@@ -14,7 +14,6 @@ import com.google.android.gms.maps.model.MarkerOptions
 
 class MapsActivity : FragmentActivity(), OnMapReadyCallback {
 
-    private var mMap: GoogleMap? = null
     private val MY_PERMISSIONS_REQUEST = 123
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,15 +38,15 @@ class MapsActivity : FragmentActivity(), OnMapReadyCallback {
      * it inside the SupportMapFragment. This method will only be triggered once the user has
      * installed Google Play services and returned to the app.
      */
+    // geo fix 12,511922 55,770535
     override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap
         val cphbusiness = LatLng(55.770535, 12.511922)
-        mMap!!.addMarker(MarkerOptions().position(cphbusiness).title("Her"))
-        mMap!!.moveCamera(CameraUpdateFactory.newLatLng(cphbusiness))
+        googleMap.addMarker(MarkerOptions().position(cphbusiness).title("Her"))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(cphbusiness))
         if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return
         }
 
-        mMap!!.isMyLocationEnabled = true
+        googleMap.isMyLocationEnabled = true
     }
 }
